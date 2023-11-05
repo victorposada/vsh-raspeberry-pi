@@ -1,0 +1,7 @@
+raspberry-pi:
+  hosts:
+    192.168.1.121:
+      ansible_ssh_user: hoid
+      ansible_ssh_private_key_file: ~/.ssh/faile
+
+
