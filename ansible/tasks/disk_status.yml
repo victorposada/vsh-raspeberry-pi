@@ -1,0 +1,10 @@
+- name: Check disk space status
+  command: df -h
+  register: disk_space_status
+  tags: disk_status
+
+- name: Display disk space status
+  debug:
+    var: disk_space_status.stdout_lines
+  when: disk_space_status is defined
+  tags: disk_status

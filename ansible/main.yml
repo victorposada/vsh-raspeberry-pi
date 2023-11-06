@@ -1,0 +1,16 @@
+---
+- hosts: raspberry-pi
+  become : yes
+  tasks: 
+    - name: Check connection
+      action: ping
+
+    - name: Import update playbook
+      include_tasks: "./tasks/update.yml"
+      tags: update
+      when: "'update' in ansible_run_tags"
+
+    - name: Import disk status playbook
+      include_tasks: "./tasks/disk_status.yml"
+      tags: disk_status
+      when: "'disk_status' in ansible_run_tags"

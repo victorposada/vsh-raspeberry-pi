@@ -1,0 +1,12 @@
+- name: Update apt repository
+  apt: 
+    update_cache=yes 
+    force_apt_get=yes 
+    cache_valid_time=3600
+  tags: update
+
+- name: Upgrade apt repository
+  apt: 
+    upgrade=dist 
+    force_apt_get=yes
+  tags: update
