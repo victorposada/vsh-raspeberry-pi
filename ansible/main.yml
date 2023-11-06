@@ -1,5 +1,5 @@
 ---
-- hosts: raspberry-pi
+- hosts: raspberrypi
   become : yes
   tasks: 
     - name: Check connection
