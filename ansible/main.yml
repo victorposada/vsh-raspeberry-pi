@@ -14,3 +14,8 @@
       include_tasks: "./tasks/disk_status.yml"
       tags: disk_status
       when: "'disk_status' in ansible_run_tags"
+    
+    - name: Import docker install playbook
+      include_tasks: "./tasks/docker.yml"
+      tags: docker
+      when: "'docker' in ansible_run_tags"
