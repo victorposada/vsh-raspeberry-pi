@@ -54,6 +54,6 @@ Before using the playbooks and tasks in this repository, ensure you have the fol
 
      ```bash
      #modify vars/pihole.yml with your data
-     ansible-playbook main.yml --tags pihole
 
+     ansible-playbook main.yml --tags pihole
 
