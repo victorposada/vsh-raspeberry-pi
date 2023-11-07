@@ -1,7 +1,7 @@
 #!/bin/bash
 echo "Creating new inventory file...."
 echo ""
-read -p "Typo your RaspberryPi IP: " ip
+read -p "Type your RaspberryPi IP: " ip
 read -p "Type your RaspberryPi username: " user
 read -p "Type your private key location: " location
 

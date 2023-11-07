@@ -1,6 +1,8 @@
 ---
 - hosts: raspberrypi
   become : yes
+  vars_files:
+    - vault.yml
   tasks: 
     - name: Check connection
       action: ping
@@ -19,3 +21,13 @@
       include_tasks: "./tasks/docker.yml"
       tags: docker
       when: "'docker' in ansible_run_tags"
+
+    - name: Im2port docker install playbook
+      shell: echo $API_KEY
+      environment:
+        API_KEY: "{{ my_key }}"
+      register: echo_result
+
+    - name: sadasdsada
+      debug: var=echo_result.stdout
+
