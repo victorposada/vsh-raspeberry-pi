@@ -1,0 +1,3 @@
+---
+pihole_timezone: 'Europe/Madrid'
+pihole_webport: '8080'

@@ -23,11 +23,12 @@ Before using the playbooks and tasks in this repository, ensure you have the fol
    git clone https://github.com/yourusername/vsh-raspberry-pi.git
    cd vsh-raspberry-pi
 
-2. Modify the inventory.yml for your Raspberry Pi:
+2. Modify the inventory.yml for your Raspberry Pi with script or manually:
 
      ```bash
-   raspberry-pi:
-     hosts:
-      <raspiberry-pi ip or hostname if dns>:
-        ansible_ssh_user: <raspberry-pi user>
-        ansible_ssh_private_key_file: <path to your ssh key>
+     bash start.sh
+
+3. Create vault file and passwords:
+
+     ```bash
+     bash vault.sh
