@@ -22,12 +22,10 @@
       tags: docker
       when: "'docker' in ansible_run_tags"
 
-    - name: Im2port docker install playbook
-      shell: echo $API_KEY
-      environment:
-        API_KEY: "{{ my_key }}"
-      register: echo_result
+    - name: Import pihole install playbook
+      include_tasks: "./tasks/pihole.yml"
+      tags: pihole
+      when: "'pihole' in ansible_run_tags"
 
-    - name: sadasdsada
-      debug: var=echo_result.stdout
+
 

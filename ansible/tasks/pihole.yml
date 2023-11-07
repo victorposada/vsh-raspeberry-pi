@@ -1,0 +1,16 @@
+- name: Get vars
+  include_vars:
+    file: vars/pihole.yml
+  tags: pihole
+
+- name: Create PiHole docker compose from template
+  template: 
+    src: templates/docker/pihole.yml.j2
+    dest: ~/docker-compose/pihole.yml
+  tags: pihole
+
+- name: Init PiHole Docker Compose
+  command: docker-compose -f ~/docker-compose/pihole.yml up -d
+  tags: pihole  
+  become: yes
+
