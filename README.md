@@ -32,3 +32,28 @@ Before using the playbooks and tasks in this repository, ensure you have the fol
 
      ```bash
      bash vault.sh
+
+## Tasks 📃
+
+1. Update and upgrade raspberry
+
+     ```bash
+     ansible-playbook main.yml --tags update
+
+2. Check disk status
+
+     ```bash
+     ansible-playbook main.yml --tags disk_status
+    
+3. Install docker and docker-compose
+
+     ```bash
+     ansible-playbook main.yml --tags docker
+
+4. Install PiHole in docker
+
+     ```bash
+     #modify vars/pihole.yml with your data
+     ansible-playbook main.yml --tags pihole
+
+
