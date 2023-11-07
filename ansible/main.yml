@@ -22,10 +22,14 @@
       tags: docker
       when: "'docker' in ansible_run_tags"
 
-    - name: Import pihole install playbook
+    - name: Import PiHole install playbook
       include_tasks: "./tasks/pihole.yml"
       tags: pihole
       when: "'pihole' in ansible_run_tags"
 
+    - name: Import InfluxDB install playbook
+      include_tasks: "./tasks/influxdb.yml"
+      tags: influxdb
+      when: "'influxdb' in ansible_run_tags"
 
 

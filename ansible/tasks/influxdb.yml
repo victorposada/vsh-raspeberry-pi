@@ -1,0 +1,23 @@
+- name: Get vars
+  include_vars:
+    file: vars/influxdb.yml
+  tags: influxdb
+
+- name: Install Influx client
+  apt: 
+    name: 
+      - influxdb-client
+    state: present
+  tags: influxdb
+
+- name: Create InfluxDB docker compose from template
+  template: 
+    src: templates/docker/influxdb.yml.j2
+    dest: ~/docker-compose/influxdb.yml
+  tags: influxdb
+
+- name: Init InfluxDB Docker Compose
+  command: docker-compose -f ~/docker-compose/influxdb.yml up -d
+  tags: influxdb  
+  become: yes
+
