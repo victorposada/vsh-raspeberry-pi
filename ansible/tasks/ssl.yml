@@ -1,11 +1,19 @@
+- name: Create directory for ssl
+  file:
+    path: ~/docker-compose/ssl
+    state: directory
+    mode: '0755'
+  become: yes
+  tags: ssl
+
 - name: Copy key to RaspberryPi
   copy:
     src: ssl/vsh.key
-    dest: /etc/ssl/vsh.key
+    dest: ~/docker-compose/ssl/vsh.key
   tags: ssl
 
 - name: Copy cert to RaspberryPi
   copy:
     src: ssl/vsh.crt
-    dest: /etc/ssl/vsh.crt
+    dest: ~/docker-compose/ssl/vsh.crt
   tags: ssl
