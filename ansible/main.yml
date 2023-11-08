@@ -31,5 +31,10 @@
       include_tasks: "./tasks/influxdb.yml"
       tags: influxdb
       when: "'influxdb' in ansible_run_tags"
+  
+    - name: Import SSL playbook
+      include_tasks: "./tasks/ssl.yml"
+      tags: ssl
+      when: "'ssl' in ansible_run_tags"
 
 

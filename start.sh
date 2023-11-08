@@ -11,5 +11,7 @@ echo "    $ip:" >> ansible/inventory.yml
 echo "      ansible_ssh_user: $user" >> ansible/inventory.yml
 echo "      ansible_ssh_private_key_file: $location" >> ansible/inventory.yml
 
+openssl req -x509 -nodes -newkey rsa:2048 -keyout ansible/ssl/vsh.key -out ansible/ssl/vsh.crt -days 365
+
 echo ""
 echo "Inventory file has been created!"

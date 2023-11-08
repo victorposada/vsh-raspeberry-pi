@@ -1,0 +1,11 @@
+- name: Copy key to RaspberryPi
+  copy:
+    src: ssl/vsh.key
+    dest: /etc/ssl/vsh.key
+  tags: ssl
+
+- name: Copy cert to RaspberryPi
+  copy:
+    src: ssl/vsh.crt
+    dest: /etc/ssl/vsh.crt
+  tags: ssl
