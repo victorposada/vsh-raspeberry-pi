@@ -3,7 +3,7 @@
     file: vars/influxdb.yml
   tags: influxdb
 
-- name: Install Influx client
+- name: Install InfluxDB client
   apt: 
     name: 
       - influxdb-client
@@ -20,4 +20,15 @@
   command: docker-compose -f ~/docker-compose/influxdb.yml up -d
   tags: influxdb  
   become: yes
+
+
+- name: Pause for 5 seconds
+  ansible.builtin.pause:
+    seconds: 5
+
+- name: Exec InfluxDB setup
+  command: docker exec influxdb influx setup -u {{ influx_root_name }} -p {{ influx_root_password }} -o {{ influx_organization }} -b {{ influx_bucket }} --force
+  tags: influxdb  
+  become: yes
+  ignore_errors: yes
 

@@ -1,4 +1,5 @@
 ---
-influx_db_name: data
 influx_root_name: admin
 influx_user_name: user
+influx_organization: raspi
+influx_bucket: raspi
