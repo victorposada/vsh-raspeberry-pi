@@ -55,10 +55,17 @@ Before using the playbooks and tasks in this repository, ensure you have the fol
      ```bash
      ansible-playbook main.yml --tags docker
 
-5. Install PiHole in docker
+5. Install PiHole with docker-compose
 
      ```bash
      #modify vars/pihole.yml with your data
 
-     ansible-playbook main.yml --tags pihole
+     ansible-playbook main.yml --tags pihole --vault-pass-file ~/.ansible/.secret_pi
+
+6. Install InfluxDB with docker-compose
+
+     ```bash
+     #modify vars/influxdb.yml with your data
+
+     ansible-playbook main.yml --tags influxdb --vault-pass-file ~/.ansible/.secret_pi
 
