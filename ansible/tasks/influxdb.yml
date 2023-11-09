@@ -28,7 +28,7 @@
   tags: influxdb
 
 - name: Exec InfluxDB setup
-  command: docker exec influxdb influx setup -u {{ influx_root_name }} -p {{ influx_root_password }} -o {{ influx_organization }} -b {{ influx_bucket }} --force --host https://localhost:8086 --skip-verify
+  command: docker exec influxdb influx setup -u {{ influx_root_name }} -p {{ influx_root_password }} -o {{ influx_organization }} -b {{ influx_bucket }} --force --host http://localhost:8086 --skip-verify
   tags: influxdb  
   become: yes
   ignore_errors: yes

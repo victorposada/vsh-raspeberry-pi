@@ -8,8 +8,7 @@ services:
     ports:
       - "8086:8086"
     environment:
-      - INFLUXD_TLS_CERT=/etc/ssl/vsh.crt
-      - INFLUXD_TLS_KEY=/etc/ssl/vsh.key
+      - INFLUXDB_DB=influx
     volumes:
       - ./influx:/var/lib/influxd
       - ./ssl/vsh.crt:/etc/ssl/vsh.crt
