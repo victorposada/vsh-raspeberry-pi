@@ -1,12 +1,12 @@
 - name: Stop old docker
-  command: docker stop influxdb 
-  tags: influxdb  
+  command: docker stop influxdb
+  tags: influxdb
   become: yes
   ignore_errors: yes
 
 - name: Delete old docker
-  command: docker rm influxdb 
-  tags: influxdb  
+  command: docker rm influxdb
+  tags: influxdb
   become: yes
   ignore_errors: yes
 
@@ -16,23 +16,22 @@
   tags: influxdb
 
 - name: Install InfluxDB client
-  apt: 
-    name: 
+  apt:
+    name:
       - influxdb-client
     state: present
   tags: influxdb
 
 - name: Create InfluxDB docker compose from template
-  template: 
+  template:
     src: templates/docker/influxdb.yml.j2
     dest: ~/docker-compose/influxdb.yml
   tags: influxdb
 
 - name: Init InfluxDB Docker Compose
   command: docker-compose -f ~/docker-compose/influxdb.yml up -d
-  tags: influxdb  
+  tags: influxdb
   become: yes
-
 
 - name: Pause for 5 seconds
   ansible.builtin.pause:
@@ -41,7 +40,31 @@
 
 - name: Exec InfluxDB setup
   command: docker exec influxdb influx setup -u {{ influx_root_name }} -p {{ influx_root_password }} -o {{ influx_organization }} -b {{ influx_bucket }} --force --host http://localhost:8086 --skip-verify
-  tags: influxdb  
+  tags: influxdb
   become: yes
   ignore_errors: yes
 
+- name: Get token
+  shell: docker exec influxdb cat /etc/influxdb2/influx-configs | grep token | head -n1 | cut -d '"' -f2
+  register: influx_db_token
+  tags: influxdb
+  become: yes
+
+- name: populate /etc/environment
+  lineinfile:
+    path: "/etc/environment"
+    state: present
+    line: "INFLUXDB_TOKEN={{ influx_db_token.stdout_lines | first }}"
+  tags: influxdb
+  become: yes
+
+- name: Create cpu temp script from template
+  template:
+    src: templates/scripts/temperature.py.j2
+    dest: ~/docker-compose/temperature.py
+  tags: influxdb
+
+- name: Start monitoring CPU temp
+  shell: nohup python3 ~/docker-compose/temperature.py
+  tags: influxdb
+  become: yes
