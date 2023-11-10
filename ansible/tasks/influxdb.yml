@@ -1,3 +1,9 @@
+- name: Delete old docker
+  command: docker stop influxdb && docker rm influxdb
+  tags: influxdb  
+  become: yes
+  ignore_errors: yes
+
 - name: Get vars
   include_vars:
     file: vars/influxdb.yml
