@@ -7,8 +7,6 @@ services:
     container_name: influxdb
     ports:
       - "8086:8086"
-    environment:
-      - INFLUXDB_DB=influx
     volumes:
       - ./influx:/var/lib/influxd
       - ./ssl/vsh.crt:/etc/ssl/vsh.crt
