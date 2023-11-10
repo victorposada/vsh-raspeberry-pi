@@ -1,5 +1,11 @@
+- name: Stop old docker
+  command: docker stop influxdb 
+  tags: influxdb  
+  become: yes
+  ignore_errors: yes
+
 - name: Delete old docker
-  command: docker stop influxdb && docker rm influxdb
+  command: docker rm influxdb 
   tags: influxdb  
   become: yes
   ignore_errors: yes
