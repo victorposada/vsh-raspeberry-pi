@@ -37,7 +37,7 @@ Before using the playbooks and tasks in this repository, ensure you have the fol
 
 1. Move to ansible folder
 
-     ``bash
+     ```bash
      cd ansible
 
 2. Update and upgrade raspberry
