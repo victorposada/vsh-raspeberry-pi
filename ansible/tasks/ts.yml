@@ -1,0 +1,32 @@
+- name: Stop old docker
+  command: docker stop ts ts_db
+  tags: ts
+  become: yes
+  ignore_errors: yes
+
+- name: Delete old docker
+  command: docker rm ts ts_db
+  tags: ts
+  become: yes
+  ignore_errors: yes
+
+- name: Get vars
+  include_vars:
+    file: vars/ts.yml
+  tags: ts
+
+- name: Create TeamSpeak docker compose from template
+  template:
+    src: templates/docker/ts.yml.j2
+    dest: ~/docker-compose/ts.yml
+  tags: ts
+
+- name: Init TeamSpeak Docker Compose
+  command: docker-compose -f ~/docker-compose/ts.yml up -d
+  tags: ts
+  become: yes
+
+- name: Pause for 5 seconds
+  ansible.builtin.pause:
+    seconds: 5
+  tags: ts

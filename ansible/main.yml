@@ -37,4 +37,9 @@
       tags: ssl
       when: "'ssl' in ansible_run_tags"
 
+    - name: Import TeamSpeak playbook
+      include_tasks: "./tasks/ts.yml"
+      tags: ts
+      when: "'ts' in ansible_run_tags"
+
 
