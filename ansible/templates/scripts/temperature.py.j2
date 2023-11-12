@@ -30,7 +30,7 @@ if __name__ == "__main__":
         while True:
             temperature = get_raspberry_pi_temperature()
             write_api = client.write_api(write_options=SYNCHRONOUS)
-            p = influxdb_client.Point("raspi").tag("component", "cpu").field("temperature", temperature)
+            p = influxdb_client.Point("term").tag("location", "Prague").field("temperature", temperature)            
             write_api.write(bucket=bucket, org=org, record=p)
             time.sleep(1)
 

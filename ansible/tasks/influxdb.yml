@@ -45,7 +45,7 @@
   ignore_errors: yes
 
 - name: Get token
-  shell: docker exec influxdb cat /etc/influxdb2/influx-configs | grep token | head -n1 | cut -d '"' -f2
+  shell: docker exec influxdb influx auth create --org {{ influx_organization }} --all-access | awk 'NR==2 {print $2}'
   register: influx_db_token
   tags: influxdb
   become: yes
@@ -65,6 +65,7 @@
   tags: influxdb
 
 - name: Start monitoring CPU temp
-  shell: nohup python3 ~/docker-compose/temperature.py
+  shell: python3 ~/docker-compose/temperature.py &
+  environment:
+    INFLUXDB_TOKEN: "{{ influx_db_token.stdout_lines | first }}"
   tags: influxdb
-  become: yes
