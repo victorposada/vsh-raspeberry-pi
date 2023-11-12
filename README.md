@@ -69,3 +69,9 @@ Before using the playbooks and tasks in this repository, ensure you have the fol
 
      ansible-playbook main.yml --tags influxdb --vault-pass-file ~/.ansible/.secret_pi
 
+7. Install TeamSpeak server with docker-compose
+
+     ```bash
+     #modify vars/ts.yml with your data
+
+     ansible-playbook main.yml --tags ts --vault-pass-file ~/.ansible/.secret_pi
